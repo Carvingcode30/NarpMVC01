@@ -11,6 +11,8 @@ package kr.bit.model;
 )
  */
 //회원(Object) -> MemberVO
+// VO(값 객체, Value Object) 클래스는 주로 데이터를 담는 목적으로 사용 
+// 보통 데이터베이스의 특정 테이블과 매핑되는 객체를 나타낸다.
 public class MemberVO {
 	private int num;
 	private String id;

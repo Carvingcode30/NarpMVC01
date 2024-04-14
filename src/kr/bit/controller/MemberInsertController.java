@@ -1,6 +1,7 @@
 package kr.bit.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.bit.model.MemberDAO;
 import kr.bit.model.MemberVO;
 
 @WebServlet("/memberInsert.do")
@@ -36,5 +38,17 @@ public class MemberInsertController extends HttpServlet {
 		// 디버깅
 		System.out.println(vo); // .toString() 생략가능
 		
+		
+		// Model과 연동부분
+		MemberDAO dao = new MemberDAO();
+		int cnt = dao.memberInsert(vo);
+		if(cnt>0) {
+			// 가입성공
+			// out.println("insert success"); // 다시 회원 리스트로 가야된다
+			response.sendRedirect("/MVC01/memberList.do");
+		} else {
+			// 가입 실패 -> 예외 객체를 만들어서 WAS에게 던지자
+			throw new ServletException("not insert");
+		}
 	}
 }
