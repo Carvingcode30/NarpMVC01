@@ -13,7 +13,10 @@ import kr.bit.model.MemberVO;
 @WebServlet("/memberInsert.do")
 public class MemberInsertController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		// 한글깨짐 > utf 8 인코딩
+		request.setCharacterEncoding("UTF-8");
+		
 		// 1. 파라미터 수집 (VO)
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
